@@ -31,6 +31,7 @@ public class ChessMatch {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
+		validateTargetPosition(source,target);
 		Piece capturedPiece = makeMove(source, target);
 		return (ChessPiece) capturedPiece;
 		
@@ -50,13 +51,19 @@ public class ChessMatch {
 			throw new ChessException("There is no possible moves for the chosen piece");
 		}
 	}
+	private void validateTargetPosition(Position source, Position target) {
+		if(!board.piece(source).possibleMove(target)) {
+			throw new ChessException("The chosen piece can´t move to target position");
+		}
+	}
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
 	}
+	
 	private void initialSetup() {
 		
 				
-		placeNewPiece('b', 6, new Rook(board, Color.WHITE)); // torre branca
+		
 		placeNewPiece('e', 8, new King(board, Color.BLACK)); // rei preto
 		placeNewPiece('e', 1, new King(board, Color.WHITE)); // rei branco
 		placeNewPiece('c', 1, new Rook(board, Color.WHITE)); // torre branco
@@ -64,14 +71,12 @@ public class ChessMatch {
 	placeNewPiece('c', 2, new Rook(board, Color.WHITE)); // torre branco
 	placeNewPiece('d', 2, new Rook(board, Color.WHITE)); // torre branco
 	placeNewPiece('e', 2, new Rook(board, Color.WHITE)); // torre branco
-//	placeNewPiece('e', 1, new Rook(board, Color.WHITE)); // torre branco
 	placeNewPiece('d', 1, new Rook(board, Color.WHITE)); // torre branco
 	
 	placeNewPiece('c', 7, new Rook(board, Color.BLACK)); // torre preta
 	placeNewPiece('c', 8, new Rook(board, Color.BLACK)); // torre preta
 	placeNewPiece('d', 7, new Rook(board, Color.BLACK)); // torre preta
 	placeNewPiece('e', 7, new Rook(board, Color.BLACK)); // torre preta
-//	placeNewPiece('e', 8, new Rook(board, Color.BLACK)); // torre preta
 	placeNewPiece('d', 8, new Rook(board, Color.BLACK)); // torre preta
 		
 	}
