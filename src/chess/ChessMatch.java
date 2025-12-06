@@ -27,6 +27,13 @@ public class ChessMatch {
 		return mat;
 	}
 	
+	public boolean [][] possibleMoves(ChessPosition sourcePosition) {
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves();
+		
+	}
+	
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
@@ -64,20 +71,21 @@ public class ChessMatch {
 		
 				
 		
-		placeNewPiece('e', 8, new King(board, Color.BLACK)); // rei preto
-		placeNewPiece('e', 1, new King(board, Color.WHITE)); // rei branco
-		placeNewPiece('c', 1, new Rook(board, Color.WHITE)); // torre branco
+		placeNewPiece('d', 8, new King(board, Color.BLACK)); // rei preto
+		placeNewPiece('d', 1, new King(board, Color.WHITE)); // rei branco
 		
+	placeNewPiece('c', 1, new Rook(board, Color.WHITE)); // torre branco
 	placeNewPiece('c', 2, new Rook(board, Color.WHITE)); // torre branco
 	placeNewPiece('d', 2, new Rook(board, Color.WHITE)); // torre branco
+	placeNewPiece('e', 1, new Rook(board, Color.WHITE)); // torre branco
 	placeNewPiece('e', 2, new Rook(board, Color.WHITE)); // torre branco
-	placeNewPiece('d', 1, new Rook(board, Color.WHITE)); // torre branco
 	
 	placeNewPiece('c', 7, new Rook(board, Color.BLACK)); // torre preta
 	placeNewPiece('c', 8, new Rook(board, Color.BLACK)); // torre preta
 	placeNewPiece('d', 7, new Rook(board, Color.BLACK)); // torre preta
 	placeNewPiece('e', 7, new Rook(board, Color.BLACK)); // torre preta
-	placeNewPiece('d', 8, new Rook(board, Color.BLACK)); // torre preta
+	placeNewPiece('e', 8, new Rook(board, Color.BLACK)); // torre preta
+	
 		
 	}
 		
